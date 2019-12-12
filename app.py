@@ -24,7 +24,7 @@ def send_sms():
         body=body)
 
 
-schedule.every().day.at("21:38").do(send_sms)
+schedule.every().day.at("22:06").do(send_sms)
 
 while True:
     schedule.run_pending()
