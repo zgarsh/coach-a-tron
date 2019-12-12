@@ -26,6 +26,11 @@ def send_sms():
 
 schedule.every().day.at("22:06").do(send_sms)
 
+def pulse_check():
+    print('I am alive!')
+
+schedule.every().minute.do(pulse_check)
+
 while True:
     schedule.run_pending()
 
