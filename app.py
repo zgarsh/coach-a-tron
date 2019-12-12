@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 def send_sms():
 
-    body = "it's nine thirty eight!"
+    body = "it's ten o' six!"
 
     to = my_number,
     client.messages.create(
