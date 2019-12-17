@@ -1,3 +1,6 @@
+
+# -*- coding: utf-8 -*-
+
 import os
 import schedule
 from flask import Flask, request, redirect
