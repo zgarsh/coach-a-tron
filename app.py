@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 def send_sms():
 
-    body = "it's ten o' six!"
+    body = "it's past eleven!"
 
     to = my_number,
     client.messages.create(
@@ -25,7 +25,6 @@ def send_sms():
 
 
 # schedule.every().day.at("19:30").do(send_sms)
-
 
 
 # def pulse_check():
