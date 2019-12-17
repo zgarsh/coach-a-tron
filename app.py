@@ -1,8 +1,8 @@
-
 # -*- coding: utf-8 -*-
 
 import os
 import schedule
+import logging
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
@@ -17,7 +17,7 @@ client = Client(twilio_account_sid, twilio_auth_token)
 app = Flask(__name__)
 
 if __name__ != '__main__':
-    gunicorn_logger = logging.getLogger(‘gunicorn.error’)
+    gunicorn_logger = logging.getLogger("‘gunicorn.error’")
     app.logger.handlers = gunicorn_logger.handlers
     app.logger.setLevel(gunicorn_logger.level)
 
@@ -38,11 +38,13 @@ def send_sms():
 
 def pulse_check():
     print('I am alive!')
-    app.logger.debug(‘this is a DEBUG message’)
-    app.logger.info(‘this is an INFO message’)
-    app.logger.warning(‘this is a WARNING message’)
-    app.logger.error(‘this is an ERROR message’)
-    app.logger.critical(‘this is a CRITICAL message’)
+    app.logger.debug("‘this is a DEBUG message’")
+    app.logger.info("‘this is an INFO message’")
+    app.logger.warning("‘this is a WARNING message’")
+    app.logger.error("‘this is an ERROR message’")
+    app.logger.critical("‘this is a CRITICAL message’")
+
+pulse_check()
 
 schedule.every().minute.do(pulse_check)
 
