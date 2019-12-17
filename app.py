@@ -29,6 +29,7 @@ def send_sms():
 
 def pulse_check():
     print('I am alive!')
+    app.logger.info(‘this is an INFO message’)
 
 schedule.every().minute.do(pulse_check)
 
