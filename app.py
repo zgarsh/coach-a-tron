@@ -24,13 +24,14 @@ def send_sms():
         body=body)
 
 
-schedule.every().day.at("19:30").do(send_sms)
+# schedule.every().day.at("19:30").do(send_sms)
 
 
-def pulse_check():
-    print('I am alive!')
 
-schedule.every().minute.do(pulse_check)
+# def pulse_check():
+#     print('I am alive!')
+
+schedule.every().minute.do(send_sms)
 
 while True:
     schedule.run_pending()
