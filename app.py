@@ -27,10 +27,10 @@ def send_sms():
 # schedule.every().day.at("19:30").do(send_sms)
 
 
-# def pulse_check():
-#     print('I am alive!')
+def pulse_check():
+    print('I am alive!')
 
-schedule.every().minute.do(send_sms)
+schedule.every().minute.do(pulse_check)
 
 while True:
     schedule.run_pending()
