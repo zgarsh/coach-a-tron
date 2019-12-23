@@ -22,6 +22,7 @@ if __name__ != '__main__':
     app.logger.setLevel(gunicorn_logger.level)
 
 
+@app.route("/sms", methods=['GET', 'POST'])
 def send_sms():
 
     body = "it's past eleven!"
