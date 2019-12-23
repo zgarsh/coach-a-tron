@@ -45,14 +45,14 @@ def pulse_check():
     app.logger.error("‘this is an ERROR message’")
     app.logger.critical("‘this is a CRITICAL message’")
 
-pulse_check()
+# pulse_check()
 
-schedule.every().minute.do(pulse_check)
+# schedule.every().minute.do(pulse_check)
 
-print('Please print this')
+# print('Please print this')
 
-while True:
-    schedule.run_pending()
+# while True:
+#     schedule.run_pending()
 
 
 if __name__ == '__main__':
