@@ -22,19 +22,62 @@ if __name__ != '__main__':
     app.logger.setLevel(gunicorn_logger.level)
 
 
-@app.route("/sms", methods=['GET', 'POST'])
-def send_sms():
 
-    body = "it's past eleven!"
 
-    to = my_number,
-    client.messages.create(
-        to,
-        from_=twilio_number,
-        body=body)
+
+# @app.route("/sms", methods=['GET', 'POST'])
+# def send_sms():
+
+#     body = "it's past eleven!"
+
+#     to = my_number,
+#     client.messages.create(
+#         to,
+#         from_=twilio_number,
+#         body=body)
 
 
 # schedule.every().day.at("19:30").do(send_sms)
+
+
+
+
+@app.route("/sms", methods=['GET', 'POST'])
+def sms_reply():
+    print('message from:', request.values['From'])
+
+    message_body = request.form['Body']
+    print('message:', message_body)
+
+    # user = db.session.query(User).filter_by(phone = request.values['From']).one()
+
+    # if user.id == 1:
+    #     # user is me
+    #     responseText = choose_action_host(request)
+    #     print('response to Zach:', responseText)
+    # else:
+    #     # user is someone else
+    #     responseText = choose_action_guest(request)
+    #     print('response to someone else:', responseText)
+
+    #     host_alert = "message from " + str(user.name) + ': ' + message_body + "\n\n"
+    #     host_alert += "response: " + responseText
+    #     message_host(host_alert)
+
+    responseText = "Responding beep boop"
+
+    resp = MessagingResponse()
+    resp.message(responseText)
+
+
+    return str(resp)
+
+
+
+
+
+
+
 
 
 def pulse_check():
