@@ -22,28 +22,29 @@ dt = datetime.datetime
 app = Flask(__name__)
 
 
-# Configure your race
+# configure your race
 race_name = "Berlin Marathon"
 race_day = dt(year=2020, month=9, day=27)
 
 
-
+# determine daily assignment
 def get_distance_message_text():
     day_of_week = dt.now().weekday()
     
     distance_mapping = {
-        0:0,
-        1:3,
-        2:4,
-        3:3,
-        4:0,
-        5:6,
-        6:'x'
+        0: 'rest!',
+        1: 'run three miles.',
+        2: 'run four miles.',
+        3: 'run three miles.',
+        4: 'rest!',
+        5: 'run six miles.',
+        6: 'do some cross training'
     }
 
     print('getting distance text')
     
-    return "today you need to run {} miles".format(distance_mapping[day_of_week])
+    return "todays assignment is to {}".format(distance_mapping[day_of_week])
+
 
 def get_countdown_message_text():
     days_remaining = race_day - dt.now()
@@ -51,7 +52,7 @@ def get_countdown_message_text():
 
     print('getting countdown text')
     
-    return "just {} days until the {}!".format(days_remaining, race_name)
+    return "{} days until the {}!".format(days_remaining, race_name)
 
 
 
@@ -67,7 +68,7 @@ def sms_reply():
     print('message:', message_body)
 
 
-    responseText = get_countdown_message_text()
+    responseText = get_distance_message_text() 
 
     resp = MessagingResponse()
     resp.message(responseText)
