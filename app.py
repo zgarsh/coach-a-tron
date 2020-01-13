@@ -80,13 +80,13 @@ def sms_reply():
 
 
 
-def pulse_check():
-    print('I am alive!')
-    app.logger.debug("‘this is a DEBUG message’")
-    app.logger.info("‘this is an INFO message’")
-    app.logger.warning("‘this is a WARNING message’")
-    app.logger.error("‘this is an ERROR message’")
-    app.logger.critical("‘this is a CRITICAL message’")
+# def pulse_check():
+#     print('I am alive!')
+#     app.logger.debug("‘this is the DEBUG message’")
+#     app.logger.info("‘this is an INFO message’")
+#     app.logger.warning("‘this is a WARNING message’")
+#     app.logger.error("‘this is an ERROR message’")
+#     app.logger.critical("‘this is a CRITICAL message’")
 
 # pulse_check()
 
@@ -96,6 +96,7 @@ def pulse_check():
 
 # while True:
 #     schedule.run_pending()
+
 
 
 if __name__ == '__main__':
