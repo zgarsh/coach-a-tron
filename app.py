@@ -72,7 +72,7 @@ def sms_reply():
     print('message:', message_body)
 
 
-    responseText = get_distance_message_text() 
+    responseText = assemble_message()
 
     resp = MessagingResponse()
     resp.message(responseText)
