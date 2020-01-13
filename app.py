@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
-import schedule
-import logging
+import datetime
+# import schedule
+# import logging
+
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
@@ -15,17 +17,47 @@ my_number = os.environ['MY_NUMBER']
 # create twilio client object
 client = Client(twilio_account_sid, twilio_auth_token)
 
+dt = datetime.datetime
+
 app = Flask(__name__)
 
 
-# see if i can delete this
-# if __name__ != '__main__':
-#     gunicorn_logger = logging.getLogger("‘gunicorn.error’")
-#     app.logger.handlers = gunicorn_logger.handlers
-#     app.logger.setLevel(gunicorn_logger.level)
+# Configure your race
+race_name = "Berlin Marathon"
+race_day = dt(year=2020, month=9, day=27)
 
 
 
+def get_distance_message_text():
+    day_of_week = dt.now().weekday()
+    
+    distance_mapping = {
+        0:0,
+        1:3,
+        2:4,
+        3:3,
+        4:0,
+        5:6,
+        6:'x'
+    }
+
+    print('getting distance text')
+    
+    return "today you need to run {} miles".format(distance_mapping[day_of_week])
+
+def get_countdown_message_text():
+    days_remaining = race_day - dt.now()
+    days_remaining = days_remaining.days
+
+    print('getting countdown text')
+    
+    return "just {} days until the {}!".format(days_remaining, race_name)
+
+
+
+
+
+# Make magic
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
 
@@ -35,7 +67,7 @@ def sms_reply():
     print('message:', message_body)
 
 
-    responseText = "Responding beep boop"
+    responseText = get_countdown_message_text()
 
     resp = MessagingResponse()
     resp.message(responseText)
