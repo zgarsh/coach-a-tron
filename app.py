@@ -43,7 +43,7 @@ def get_distance_message_text():
 
     print('getting distance text')
     
-    return "todays assignment is to {}".format(distance_mapping[day_of_week])
+    return "Today's assignment is to {}".format(distance_mapping[day_of_week])
 
 
 def get_countdown_message_text():
@@ -55,7 +55,11 @@ def get_countdown_message_text():
     return "{} days until the {}!".format(days_remaining, race_name)
 
 
+def assemble_message():
 
+    message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
+
+    return message_text
 
 
 # Make magic
