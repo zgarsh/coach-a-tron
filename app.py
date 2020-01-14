@@ -59,7 +59,7 @@ def assemble_message():
 
     # message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
-    message_text = dt.now()
+    message_text = str(dt.now())
 
     return message_text
 
