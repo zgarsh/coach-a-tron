@@ -21,7 +21,7 @@ dt = datetime
 
 # convert from GMT to PST
 def get_time():
-    current_time = dt.now() - timedelta(hours=8)
+    current_time = dt.now() - timedelta(hours=8) + timedelta(days=1)
     return current_time
 
 app = Flask(__name__)
@@ -62,7 +62,7 @@ def get_countdown_message_text():
 
 def assemble_message():
 
-    message_text = 'the current time is: ' + str(get_time()) + '\n \n' + 'and the current day is:' + str(get_time().weekday()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
+    message_text = 'the current time is: ' + str(get_time()) + '\n \n' + 'and the current day is: ' + str(get_time().weekday()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
     return message_text
 
