@@ -57,7 +57,9 @@ def get_countdown_message_text():
 
 def assemble_message():
 
-    message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
+    # message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
+
+    message_text = dt.now()
 
     return message_text
 
