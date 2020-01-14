@@ -57,9 +57,9 @@ def get_countdown_message_text():
 
 def assemble_message():
 
-    # message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
+    message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
-    message_text = str(dt.now() - timedelta(hours=8, minutes=0))
+    # message_text = str(dt.now() - timedelta(hours=8, minutes=0))
 
     return message_text
 
