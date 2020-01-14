@@ -17,7 +17,7 @@ my_number = os.environ['MY_NUMBER']
 # create twilio client object
 client = Client(twilio_account_sid, twilio_auth_token)
 
-dt = datetime.datetime
+dt = datetime
 
 app = Flask(__name__)
 
