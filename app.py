@@ -80,6 +80,23 @@ def sms_reply():
 
     return str(resp)
 
+@app.route("/", methods=['GET', 'POST'])
+def sms_prompt():
+
+    # log incoming message for debugging
+    print('message from:', request.values['From'])
+    message_body = request.form['Body']
+    print('message:', message_body)
+
+
+    responseText = assemble_message()
+
+    resp = MessagingResponse()
+    resp.message(responseText)
+
+
+    return str(resp)
+
 
 
 
