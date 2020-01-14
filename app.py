@@ -60,9 +60,7 @@ def get_countdown_message_text():
 
 def assemble_message():
 
-    # message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
-
-    message_text = str(current_time)
+    message_text = 'the current time is: ' + str(current_time) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
     return message_text
 
