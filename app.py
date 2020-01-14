@@ -21,7 +21,7 @@ dt = datetime
 
 # convert from GMT to PST
 def get_time():
-    current_time = dt.now() - timedelta(hours=8) + timedelta(days=1)
+    current_time = dt.now() - timedelta(hours=8)
     return current_time
 
 app = Flask(__name__)
