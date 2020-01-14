@@ -20,7 +20,9 @@ client = Client(twilio_account_sid, twilio_auth_token)
 dt = datetime
 
 # convert from GMT to PST
-current_time = dt.now() - timedelta(hours=8, minutes=0)
+def get_time():
+    current_time = dt.now() - timedelta(hours=8, minutes=0)
+    return current_time
 
 app = Flask(__name__)
 
@@ -32,7 +34,7 @@ race_day = dt(year=2020, month=9, day=27)
 
 # determine daily assignment
 def get_distance_message_text():
-    day_of_week = current_time.weekday()
+    day_of_week = get_time().weekday()
     
     distance_mapping = {
         0: 'rest!',
@@ -50,7 +52,7 @@ def get_distance_message_text():
 
 
 def get_countdown_message_text():
-    days_remaining = race_day - current_time
+    days_remaining = race_day - get_time()
     days_remaining = days_remaining.days
 
     print('getting countdown text')
@@ -60,7 +62,7 @@ def get_countdown_message_text():
 
 def assemble_message():
 
-    message_text = 'the current time is: ' + str(current_time) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
+    message_text = 'the current time is: ' + str(get_time()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
     return message_text
 
