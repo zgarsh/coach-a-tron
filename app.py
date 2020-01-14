@@ -29,7 +29,7 @@ race_day = dt(year=2020, month=9, day=27)
 
 # determine daily assignment
 def get_distance_message_text():
-    day_of_week = dt.now().weekday()
+    day_of_week = (dt.now() - timedelta(hours=8, minutes=0)).weekday()
     
     distance_mapping = {
         0: 'rest!',
@@ -47,7 +47,7 @@ def get_distance_message_text():
 
 
 def get_countdown_message_text():
-    days_remaining = race_day - dt.now()
+    days_remaining = race_day - dt.now() - timedelta(hours=8, minutes=0)
     days_remaining = days_remaining.days
 
     print('getting countdown text')
@@ -59,7 +59,7 @@ def assemble_message():
 
     # message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
-    message_text = str(dt.now())
+    message_text = str(dt.now() - timedelta(hours=8, minutes=0))
 
     return message_text
 
