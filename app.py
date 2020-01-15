@@ -75,7 +75,7 @@ def send_a_message():
 
     print('just sent a message via sendamessage!')
 
-    return
+    return 'done sending message'
 
 
 # Make magic
@@ -95,7 +95,7 @@ def sms_reply():
     # resp.message(responseText)
 
 
-    return #str(resp)
+    return 'done replying' #str(resp)
 
 @app.route("/", methods=['GET', 'POST'])
 def sms_prompt():
@@ -112,7 +112,7 @@ def sms_prompt():
     print('tried to send message')
 
 
-    return #str(resp)
+    return 'done prompting' #str(resp)
 
 
 
