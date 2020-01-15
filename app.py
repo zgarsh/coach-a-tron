@@ -95,7 +95,7 @@ def sms_reply():
     # resp.message(responseText)
 
 
-    return str(resp)
+    return #str(resp)
 
 @app.route("/", methods=['GET', 'POST'])
 def sms_prompt():
@@ -112,7 +112,7 @@ def sms_prompt():
     print('tried to send message')
 
 
-    return str(resp)
+    return #str(resp)
 
 
 
