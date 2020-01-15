@@ -89,12 +89,12 @@ def sms_reply():
 def sms_prompt():
 
     # log incoming message for debugging
-    print('message from:', request.values['From'])
-    message_body = request.form['Body']
-    print('message:', message_body)
+    # print('message from:', request.values['From'])
+    # message_body = request.form['Body']
+    # print('message:', message_body)
 
 
-    responseText = assemble_message()
+    responseText = "replying to cron job" #assemble_message()
 
     resp = MessagingResponse()
     resp.message(responseText)
