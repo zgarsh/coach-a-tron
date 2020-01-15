@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 from datetime import datetime, timedelta
-# import schedule
-# import logging
-
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
@@ -19,6 +16,7 @@ client = Client(twilio_account_sid, twilio_auth_token)
 
 dt = datetime
 
+# TODO: this is bad! find out the proper way to convert time zones
 # convert from GMT to PST
 def get_time():
     current_time = dt.now() - timedelta(hours=8)
@@ -88,13 +86,9 @@ def sms_reply():
 @app.route("/", methods=['GET', 'POST'])
 def sms_prompt():
 
-    # log incoming message for debugging
-    # print('message from:', request.values['From'])
-    # message_body = request.form['Body']
-    # print('message:', message_body)
-
-
-    responseText = "replying to cron job" #assemble_message()
+    print('replying')
+    
+    responseText = "replying to cron job" 
 
     resp = MessagingResponse()
     resp.message(responseText)
