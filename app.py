@@ -87,7 +87,7 @@ def sms_reply():
     message_body = request.form['Body']
     print('message:', message_body)
 
-    send_a_message()
+    return send_a_message()
 
     # responseText = assemble_message()
 
@@ -95,7 +95,7 @@ def sms_reply():
     # resp.message(responseText)
 
 
-    return 'done replying' #str(resp)
+    # return 'done replying' #str(resp)
 
 @app.route("/", methods=['GET', 'POST'])
 def sms_prompt():
@@ -107,12 +107,12 @@ def sms_prompt():
     # resp = MessagingResponse()
     # resp.message(responseText)
 
-    send_a_message()
+    # send_a_message()
 
-    print('tried to send message')
+    print('about to try to send message')
 
 
-    return 'done prompting' #str(resp)
+    return send_a_message() #'done prompting' #str(resp)
 
 
 
