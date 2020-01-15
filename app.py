@@ -89,10 +89,10 @@ def sms_reply():
 
 #     return send_a_message()
 
-    # responseText = assemble_message()
+    responseText = assemble_message()
 
-    # resp = MessagingResponse()
-    # resp.message(responseText)
+    resp = MessagingResponse()
+    resp.message(responseText)
 
 
     # return 'done replying' 
