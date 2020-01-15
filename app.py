@@ -65,6 +65,19 @@ def assemble_message():
     return message_text
 
 
+
+
+def send_a_message():
+    responseText = assemble_message()
+
+    resp = MessagingResponse()
+    resp.message(responseText)
+
+    print('just sent a message via sendamessage!')
+
+    return
+
+
 # Make magic
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
@@ -74,11 +87,12 @@ def sms_reply():
     message_body = request.form['Body']
     print('message:', message_body)
 
+    send_a_message()
 
-    responseText = assemble_message()
+    # responseText = assemble_message()
 
-    resp = MessagingResponse()
-    resp.message(responseText)
+    # resp = MessagingResponse()
+    # resp.message(responseText)
 
 
     return str(resp)
@@ -87,11 +101,15 @@ def sms_reply():
 def sms_prompt():
 
     print('replying')
-    
-    responseText = "replying to cron job" 
 
-    resp = MessagingResponse()
-    resp.message(responseText)
+    # responseText = "replying to cron job" 
+
+    # resp = MessagingResponse()
+    # resp.message(responseText)
+
+    send_a_message()
+
+    print('tried to send message')
 
 
     return str(resp)
