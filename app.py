@@ -107,7 +107,10 @@ def sms_reply():
 
     if message_body in ("How far have I run?", "how far have I run?", "how far have i run?"):
         text = "you have run a lot of miles! that's the equivalent of running from here to a far away place!"
-    elif message_body in ("How many days?", "How long?", "How much time?")
+    elif message_body in ("How many days?", "How long?", "How much time?"):
+        text = get_countdown_message_text()
+    elif message_body in ("Inspire me"):
+        text = get_random_inspirational_quote
     
     else:
         text = "keep up the good work!"
