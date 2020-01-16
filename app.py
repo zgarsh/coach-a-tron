@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import random
 from datetime import datetime, timedelta
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
@@ -48,6 +49,17 @@ def get_distance_message_text():
     
     return "Today's assignment is to {}".format(distance_mapping[day_of_week])
 
+def get_random_inspirational_quote():
+
+    quote_bank = (
+        '"Today, do what others won’t so tomorrow you can accomplish what others can’t." - Jerry Rice ',
+        '"The reward is not so great without the struggle." - Wilma Rudolph',
+        '"I only start counting once it starts hurting." - Muhammad Ali',
+        '"There may be people that have more talent than you, but there’s no excuse for anyone to work harder than you do." - Derek Jeter',
+        '"It’s not the will to win that matters — everyone has that. It’s the will to prepare to win that matters." - Paul Bryant'
+    )
+
+    return random.choice(quote_bank)
 
 def get_countdown_message_text():
     days_remaining = race_day - get_time()
@@ -62,9 +74,7 @@ def assemble_poke_message():
 
     # message_text = 'the current time is: ' + str(get_time()) + '\n \n' + 'and the current day is: ' + str(get_time().weekday()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
-    message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
-
-    message_text = "https://open.spotify.com/track/5Ihd9HrPvOADyVoonH9ZjB?si=__ClQa_GSCCYlL9LLyYSKw"
+    message_text = get_random_inspirational_quote() + '\n \n' +  get_countdown_message_text() + '\n \n' + get_distance_message_text() + "https://open.spotify.com/track/5Ihd9HrPvOADyVoonH9ZjB?si=__ClQa_GSCCYlL9LLyYSKw"
 
     return message_text
 
@@ -97,6 +107,7 @@ def sms_reply():
 
     if message_body in ("How far have I run?", "how far have I run?", "how far have i run?"):
         text = "you have run a lot of miles! that's the equivalent of running from here to a far away place!"
+    elif message_body in ("How many days?", "How long?", "How much time?")
     
     else:
         text = "keep up the good work!"
