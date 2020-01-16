@@ -59,7 +59,7 @@ def get_random_inspirational_quote():
         '"It’s not the will to win that matters — everyone has that. It’s the will to prepare to win that matters." - Paul Bryant'
     )
 
-    return random.choice(quote_bank)
+    return str(random.choice(quote_bank))
 
 def get_countdown_message_text():
     days_remaining = race_day - get_time()
@@ -122,13 +122,6 @@ def sms_reply():
 def sms_prompt():
 
     print('replying')
-
-    # responseText = "replying to cron job" 
-
-    # send_a_message()
-
-    # print('about to try to send message')
-
 
     return send_a_message(assemble_poke_message())
 
