@@ -58,7 +58,7 @@ def get_countdown_message_text():
     return "{} days until the {}!".format(days_remaining, race_name)
 
 
-def assemble_message():
+def assemble_poke_message():
 
     # message_text = 'the current time is: ' + str(get_time()) + '\n \n' + 'and the current day is: ' + str(get_time().weekday()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
@@ -101,22 +101,20 @@ def sms_reply():
 
     return send_a_message(text)
 
-@app.route("/", methods=['GET', 'POST'])
+# Send poke message when poked by cron job
+@app.route("/morning-poke", methods=['GET', 'POST'])
 def sms_prompt():
 
     print('replying')
 
     # responseText = "replying to cron job" 
 
-    # resp = MessagingResponse()
-    # resp.message(responseText)
-
     # send_a_message()
 
-    print('about to try to send message')
+    # print('about to try to send message')
 
 
-    return send_a_message(assemble_message())
+    return send_a_message(assemble_poke_message())
 
 
 
