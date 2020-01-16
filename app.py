@@ -112,7 +112,7 @@ def sms_reply():
     elif message_body in ("How many days?", "How long?", "How much time?"):
         text = get_countdown_message_text()
     elif message_body in ("Inspire me"):
-        text = get_random_inspirational_quote
+        text = get_random_inspirational_quote()
     
     else:
         text = "keep up the good work!"
