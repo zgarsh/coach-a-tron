@@ -59,7 +59,9 @@ def get_random_inspirational_quote():
         '"It’s not the will to win that matters — everyone has that. It’s the will to prepare to win that matters." - Paul Bryant'
     )
 
-    return str(random.choice(quote_bank))
+    quote = random.choice(quote_bank)
+
+    return quote
 
 def get_countdown_message_text():
     days_remaining = race_day - get_time()
