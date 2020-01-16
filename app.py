@@ -64,6 +64,8 @@ def assemble_poke_message():
 
     message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
+    message_text = "https://open.spotify.com/track/5Ihd9HrPvOADyVoonH9ZjB?si=__ClQa_GSCCYlL9LLyYSKw"
+
     return message_text
 
 
