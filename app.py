@@ -68,14 +68,20 @@ def assemble_message():
 
 
 def send_a_message():
-    responseText = assemble_message()
+#     responseText = assemble_message()
 
-    resp = MessagingResponse()
-    resp.message(responseText)
+#     resp = MessagingResponse()
+#     resp.message(responseText)
 
-    print('just sent a message via sendamessage!')
+#     print('just sent a message via sendamessage!')
 
-    return 'done sending message'
+#     return 'done sending message'
+
+    message = client.messages.create(
+                                  body='Hi there Mr Potato',
+                                  from_=twilio_number,
+                                  to=my_number
+                              )
 
 
 # Make magic
