@@ -93,7 +93,13 @@ def sms_reply():
     # resp = MessagingResponse()
     # resp.message(responseText)
 
-    return send_a_message(assemble_message())
+    if message_body in ("How far have I run?", "how far have I run?", "how far have i run?"):
+        text = "you have run a lot of miles! that's the equivalent of running from here to a far away place!"
+    
+    else:
+        text = "keep up the good work!"
+
+    return send_a_message(text)
 
 @app.route("/", methods=['GET', 'POST'])
 def sms_prompt():
