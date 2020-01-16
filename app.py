@@ -60,28 +60,22 @@ def get_countdown_message_text():
 
 def assemble_message():
 
-    message_text = 'the current time is: ' + str(get_time()) + '\n \n' + 'and the current day is: ' + str(get_time().weekday()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
+    # message_text = 'the current time is: ' + str(get_time()) + '\n \n' + 'and the current day is: ' + str(get_time().weekday()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
+
+    message_text = get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
     return message_text
 
 
-
-
-def send_a_message():
-#     responseText = assemble_message()
-
-#     resp = MessagingResponse()
-#     resp.message(responseText)
-
-#     print('just sent a message via sendamessage!')
-
-#     return 'done sending message'
+def send_a_message(body):
 
     message = client.messages.create(
-                                  body='Hi there Mr Potato',
-                                  from_=twilio_number,
-                                  to=my_number
-                              )
+            body=body,
+            from_=twilio_number,
+            to=my_number
+        )
+    
+    return None
 
 
 # Make magic
@@ -93,16 +87,13 @@ def sms_reply():
     message_body = request.form['Body']
     print('message:', message_body)
 
-#     return send_a_message()
 
-    responseText = assemble_message()
+    # responseText = assemble_message()
 
-    resp = MessagingResponse()
-    resp.message(responseText)
+    # resp = MessagingResponse()
+    # resp.message(responseText)
 
-
-    # return 'done replying' 
-    return str(resp)
+    return send_a_message(assemble_message())
 
 @app.route("/", methods=['GET', 'POST'])
 def sms_prompt():
@@ -119,7 +110,7 @@ def sms_prompt():
     print('about to try to send message')
 
 
-    return send_a_message() #'done prompting' #str(resp)
+    return send_a_message(assemble_message())
 
 
 
