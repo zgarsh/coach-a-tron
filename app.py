@@ -119,8 +119,8 @@ def get_current_token_if_valid():
     
     current_time = int(time.time())
     
-    current_timestamp = datetime.datetime.utcfromtimestamp(current_time)
-    expiry_timestamp = datetime.datetime.utcfromtimestamp(oauth_data[0])
+    current_timestamp = dt.utcfromtimestamp(current_time)
+    expiry_timestamp = dt.utcfromtimestamp(oauth_data[0])
     
     print('current time UTC: ' + str(current_timestamp))
     print('access_token will expire at (UTC): ' + str(expiry_timestamp))
@@ -234,10 +234,10 @@ def write_new_run_data_if_present(json):
     
     if not max_timestamp:
         print('runs table is empty. adding all runs returned from strava, but beware page limit!')
-        max_timestamp = datetime.datetime(2011, 11, 11) #'2000-11-11T11:11:11Z'
+        max_timestamp = dt(2011, 11, 11) #'2000-11-11T11:11:11Z'
     
     for json_run in json:
-        run_datetime = datetime.datetime.strptime(json_run['start_date_local'], '%Y-%m-%dT%H:%M:%SZ')
+        run_datetime = dt.strptime(json_run['start_date_local'], '%Y-%m-%dT%H:%M:%SZ')
         if run_datetime > max_timestamp and json_run['type'] == 'Run':
             
             print('found new run with timestamp: ',  run_datetime)
