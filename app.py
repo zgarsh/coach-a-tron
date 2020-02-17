@@ -3,7 +3,7 @@ import os
 import random
 import requests
 import json
-import pandas
+# import pandas
 import psycopg2
 import time
 
