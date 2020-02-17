@@ -31,7 +31,7 @@ race_name = "Berlin Marathon"
 race_day = dt(year=2020, month=9, day=27)
 
 
-# determine daily assignment
+# get daily assignment
 def get_distance_message_text():
     day_of_week = get_time().weekday()
     
@@ -56,7 +56,7 @@ def get_random_inspirational_quote():
         '"The reward is not so great without the struggle." - Wilma Rudolph',
         '"I only start counting once it starts hurting." - Muhammad Ali',
         '"There may be people that have more talent than you, but there’s no excuse for anyone to work harder than you do." - Derek Jeter',
-        '"It’s not the will to win that matters — everyone has that. It’s the will to prepare to win that matters." - Paul Bryant'
+        '"It’s not the will to win that matters — everyone has that. It’s the will to prepare to win that matters." - Paul Bryant',
     )
 
     quote = random.choice(quote_bank)
@@ -108,14 +108,14 @@ def sms_reply():
     # resp.message(responseText)
 
     if message_body in ("How far have I run?", "how far have I run?", "how far have i run?"):
-        text = "you have run a lot of miles! that's the equivalent of running from here to a far away place!"
+        text = "You have run a lot of miles! that's the equivalent of running from here to a far away place!"
     elif message_body in ("How many days?", "How long?", "How much time?"):
         text = get_countdown_message_text()
     elif message_body in ("Inspire me"):
         text = get_random_inspirational_quote()
     
     else:
-        text = "keep up the good work!"
+        text = "Keep up the good work!"
 
     return send_a_message(text)
 
