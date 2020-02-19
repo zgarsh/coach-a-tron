@@ -279,6 +279,7 @@ def data_kitten_kaboodle():
     
     return
 
+
 def get_most_recent_run():
     
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -304,11 +305,86 @@ def get_most_recent_run():
     return last_run
 
 
+def get_todays_run():
+    
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+    
+    cur.execute("SET TIME ZONE 'America/Los_Angeles';")
+    cur.execute("SELECT distance, average_speed, moving_time FROM runs WHERE date(start_date_local) = CURRENT_DATE")
+    answer = cur.fetchone()
+
+    cur.close()
+    conn.close()
+    
+    if answer:
+        todays_run = {
+            'distance': answer[0],
+            'average_speed': answer[1],
+            'moving_time': answer[2]
+        }
+        return todays_run
+    else:
+        return None
+    
+    return answer
 
 
+def meters_to_miles(meters):
+    
+    miles = round(meters * 0.000621371, 2)
+    
+    return miles
 
 
+def meterspersecond_to_milesperhour(meterspersecond):
+    
+    milesperhour = meterspersecond * 2.23694
+    
+    return milesperhour
 
+
+def meterspersecond_to_minutespermile(meterspersecond):
+    
+    speed = round(1 / (meterspersecond / 26.822), 2)
+    
+    time = str(int(speed - (speed % 1))) + ":" + str(int((speed % 1) * 60))
+    
+    return time
+
+
+def daily_run_check():
+    """Returns a motivational message referencing distance and pace of today's run, or else says you didn't run today."""
+    
+    todays_run = get_todays_run()
+    
+    if todays_run:
+        
+        happy_intros = [
+            'Well whoop-de-doo!',
+            'Yee-haw!',
+            'Alright!',
+            'Great news!',
+            'Spectacular!',
+            'A+!',
+            'Outstanding!',
+            'Smashing!',
+            'Brilliant!',
+            'Fantastic!',
+            'This is great!',
+            'Wowowowowow!',
+            'Woah!',
+        ]
+        
+        text = "{} today you ran {} miles with a pace of {}. This was your best run today!".format(
+            random.choice(happy_intros),
+            str(meters_to_miles(todays_run['distance'])),
+            meterspersecond_to_minutespermile(todays_run['average_speed'])
+        )
+        
+        return text
+        
+    else: return 'You did not run today.'
 
 
 # Make magic
@@ -353,9 +429,11 @@ def evening_actions():
 
     data_kitten_kaboodle()
 
-    most_recent_run = get_most_recent_run()['start_date_local']
+    # most_recent_run = get_most_recent_run()['start_date_local']
 
-    text = "Your most recent run was on {}".format(str(most_recent_run))
+    # text = "Your most recent run was on {}".format(str(most_recent_run))
+
+    text = daily_run_check()
 
     return send_a_message(text)
 
