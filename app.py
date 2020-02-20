@@ -83,7 +83,9 @@ def assemble_poke_message():
 
     # message_text = 'the current time is: ' + str(get_time()) + '\n \n' + 'and the current day is: ' + str(get_time().weekday()) + '\n \n' + get_countdown_message_text() + '\n \n' + get_distance_message_text()
 
-    message_text = get_random_inspirational_quote() + '\n \n' +  get_countdown_message_text() + '\n \n' + get_distance_message_text() + "\n \n here's a song you might like: https://open.spotify.com/track/5Ihd9HrPvOADyVoonH9ZjB?si=__ClQa_GSCCYlL9LLyYSKw"
+    # message_text = get_random_inspirational_quote() + '\n \n' +  get_countdown_message_text() + '\n \n' + get_distance_message_text() + "\n \n here's a song you might like: https://open.spotify.com/track/5Ihd9HrPvOADyVoonH9ZjB?si=__ClQa_GSCCYlL9LLyYSKw"
+
+    message_text = get_countdown_message_text() + '\n' + get_distance_message_text()
 
     return message_text
 
