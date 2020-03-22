@@ -388,6 +388,53 @@ def daily_run_check():
         
     else: return 'You did not run today.'
 
+def get_aggregated_run_stats(days=30):
+    
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+    
+    cur.execute("SET TIME ZONE 'America/Los_Angeles';")
+    cur.execute("SELECT distance, moving_time FROM runs WHERE date(start_date_local) > CURRENT_TIMESTAMP - INTERVAL '{}' DAY".format(days))
+    answer = cur.fetchall()
+
+    cur.close()
+    conn.close()
+    
+    if answer:
+        
+        total_distance = 0
+        total_time = 0
+        
+        for run in answer:
+            total_distance += run[0]
+            total_time += run[1]
+            
+        total_runs = len(answer)
+        
+        average_pace = meterspersecond_to_minutespermile(total_distance/total_time)
+        
+        
+        return {
+            'total_distance': meters_to_miles(total_distance),
+            'total_time': total_time,
+            'average_pace': average_pace,
+            'total_runs': total_runs
+        }
+    
+    return 'oh nooo something went wrong'
+
+def how_far_response():
+    
+    stats = get_aggregated_run_stats(30)
+    
+    message = "In the past 30 days you've completed {} runs totalling {} miles, with an average pace of {} min/mile!".format(
+        str(stats['total_runs']),
+        str(round(stats['total_distance'], 1)),
+        stats['average_pace']
+    )
+    return message
+    
+
 
 # Make magic
 @app.route("/sms", methods=['GET', 'POST'])
@@ -404,11 +451,11 @@ def sms_reply():
     # resp = MessagingResponse()
     # resp.message(responseText)
 
-    if message_body in ("How far have I run?", "how far have I run?", "how far have i run?"):
-        text = "You have run a lot of miles! that's the equivalent of running from here to a far away place!"
-    elif message_body in ("How many days?", "How long?", "How much time?"):
+    if message_body.lower() in ("how far have i run?", "how far", "how far?", "how far have i gone?"):
+        text = how_far_response()
+    elif message_body.lower() in ("how many days", "how many days?", "how much time?", "how long?", "how long", "how much time"):
         text = get_countdown_message_text()
-    elif message_body in ("Inspire me"):
+    elif message_body.lower() in ("inspire me", "inspiration"):
         text = get_random_inspirational_quote()
     
     else:
